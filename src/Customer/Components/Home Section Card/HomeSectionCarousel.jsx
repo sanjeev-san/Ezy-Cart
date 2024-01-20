@@ -4,10 +4,9 @@ import HomeSectionCard from "./HomeSectionCard";
 import { Button } from "@mui/material";
 import KeyboardArrowRightIcon from "@mui/icons-material/KeyboardArrowRight";
 import KeyboardArrowLeftIcon from "@mui/icons-material/KeyboardArrowLeft";
-import { mens_kurta } from "../../Data/mens_kurta";
 import "react-alice-carousel/lib/alice-carousel.css";
 
-const HomeSectionCarousel = () => {
+const HomeSectionCarousel = ({data, sectionName}) => {
   const renderNextButton = () => {
     return (
       <Button
@@ -52,12 +51,13 @@ const HomeSectionCarousel = () => {
     1024: { items: 5.5, itemsFit: "contain" },
   };
 
-  const items = mens_kurta
+  const items = data
     ?.slice(0, 10)
     .map((item) => <HomeSectionCard product={item} />);
 
   return (
-    <div className="relative px-4 lg:px-8 sm:px-6">
+    <div className="border">
+      <h2 className="text-2xl font-extrabold text-gray py-5 mx-2">{sectionName}</h2>
 
       <div className="relative p-5 border">
         <AliceCarousel
