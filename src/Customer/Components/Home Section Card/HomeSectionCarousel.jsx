@@ -6,7 +6,7 @@ import KeyboardArrowRightIcon from "@mui/icons-material/KeyboardArrowRight";
 import KeyboardArrowLeftIcon from "@mui/icons-material/KeyboardArrowLeft";
 import "react-alice-carousel/lib/alice-carousel.css";
 
-const HomeSectionCarousel = ({data, sectionName}) => {
+const HomeSectionCarousel = ({ data, sectionName }) => {
   const renderNextButton = () => {
     return (
       <Button
@@ -48,7 +48,7 @@ const HomeSectionCarousel = ({data, sectionName}) => {
   const responsive = {
     0: { items: 2, itemsFit: "contain" },
     568: { items: 3, itemsFit: "contain" },
-    1024: { items: 5.5, itemsFit: "contain" },
+    1024: { items: 5, itemsFit: "contain" },
   };
 
   const items = data
@@ -56,10 +56,11 @@ const HomeSectionCarousel = ({data, sectionName}) => {
     .map((item) => <HomeSectionCard product={item} />);
 
   return (
-    <div className="border">
-      <h2 className="text-2xl font-extrabold text-gray py-5 mx-2">{sectionName}</h2>
-
-      <div className="relative p-5 border">
+    <div className="bg-white">
+      <div className="mx-auto max-w-2xl px-4 lg:max-w-7xl lg:px-8">
+        <h2 className="text-2xl font-bold tracking-tight text-gray-900">
+          {sectionName}
+        </h2>
         <AliceCarousel
           mouseTracking
           disableDotsControls
@@ -68,6 +69,7 @@ const HomeSectionCarousel = ({data, sectionName}) => {
           controlsStrategy="responsive"
           renderPrevButton={renderPrevButton}
           renderNextButton={renderNextButton}
+          className="mt-6 grid grid-cols-1 gap-x-6 gap-y-10 sm:grid-cols-2 lg:grid-cols-4 xl:gap-x-8"
         />
       </div>
     </div>
