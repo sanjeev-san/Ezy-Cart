@@ -1,5 +1,7 @@
 import "./App.css";
+import Footer from "./Customer/Components/Footer/Footer";
 import Navigation from "./Customer/Components/Navigation/Navigation";
+import Product from "./Customer/Components/Products/Product";
 import Homepage from "./Customer/Pages/Homepage/Homepage";
 
 function App() {
@@ -7,7 +9,11 @@ function App() {
     <div className="">
       <Navigation />
       <div>
-        <Homepage />
+        {/* <Homepage /> */}
+        <Product />
+      </div>
+      <div className="">
+        <Footer />
       </div>
     </div>
   );

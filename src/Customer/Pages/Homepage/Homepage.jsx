@@ -16,8 +16,6 @@ const Homepage = () => {
         <HomeSectionCarousel data={mens_kurta} sectionName={"women saree"} />
         <HomeSectionCarousel data={mens_kurta} sectionName={"women dress"} />
       </div>
-
-      <Footer />
     </div>
   );
 };
