@@ -2,63 +2,63 @@ package com.ezycart.Entity;
 
 import jakarta.persistence.Column;
 
-public class paymentInfo {
-    @Column(name="cardholder_name")
-    private String cardHolderName;
+public class PaymentInfo {
 
-    @Column(name="card_number")
-    private String cardNumber;
+  @Column(name = "cardholder_name")
+  private String cardHolderName;
 
-    @Column(name="expiration_date")
-    private String expirationDate;
+  @Column(name = "card_number")
+  private String cardNumber;
 
-    @Column(name="cvv")
-    private String cvv;
+  @Column(name = "expiration_date")
+  private String expirationDate;
 
-    public paymentInfo() {
-    }
+  @Column(name = "cvv")
+  private String cvv;
 
-    public paymentInfo(String cardHolderName, String cardNumber, String expirationDate, String cvv) {
-        this.cardHolderName = cardHolderName;
-        this.cardNumber = cardNumber;
-        this.expirationDate = expirationDate;
-        this.cvv = cvv;
-    }
+  public PaymentInfo() {}
 
-    public String getCardHolderName() {
-        return cardHolderName;
-    }
+  public PaymentInfo(
+    String cardHolderName,
+    String cardNumber,
+    String expirationDate,
+    String cvv
+  ) {
+    this.cardHolderName = cardHolderName;
+    this.cardNumber = cardNumber;
+    this.expirationDate = expirationDate;
+    this.cvv = cvv;
+  }
 
-    public void setCardHolderName(String cardHolderName) {
-        this.cardHolderName = cardHolderName;
-    }
+  public String getCardHolderName() {
+    return cardHolderName;
+  }
 
-    public String getCardNumber() {
-        return cardNumber;
-    }
+  public void setCardHolderName(String cardHolderName) {
+    this.cardHolderName = cardHolderName;
+  }
 
-    public void setCardNumber(String cardNumber) {
-        this.cardNumber = cardNumber;
-    }
+  public String getCardNumber() {
+    return cardNumber;
+  }
 
-    public String getExpirationDate() {
-        return expirationDate;
-    }
+  public void setCardNumber(String cardNumber) {
+    this.cardNumber = cardNumber;
+  }
 
-    public void setExpirationDate(String expirationDate) {
-        this.expirationDate = expirationDate;
-    }
+  public String getExpirationDate() {
+    return expirationDate;
+  }
 
-    public String getCvv() {
-        return cvv;
-    }
+  public void setExpirationDate(String expirationDate) {
+    this.expirationDate = expirationDate;
+  }
 
-    public void setCvv(String cvv) {
-        this.cvv = cvv;
-    }
+  public String getCvv() {
+    return cvv;
+  }
 
-    
-
-    
-
+  public void setCvv(String cvv) {
+    this.cvv = cvv;
+  }
 }
