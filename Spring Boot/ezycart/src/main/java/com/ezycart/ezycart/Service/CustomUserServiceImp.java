@@ -18,14 +18,6 @@ public class CustomUserServiceImp  implements UserDetailsService{
     @Autowired
     private UserRepo userRepo;
 
-
-    // private UserRepo userRepo;
-    // public CustomUserServiceImp(UserRepo userRepo){
-    //     this.userRepo=userRepo;
-    // }
-
-
-    
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException{
         User user = userRepo.findByEmail(username);
