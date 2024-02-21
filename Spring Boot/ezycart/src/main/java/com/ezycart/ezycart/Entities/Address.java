@@ -1,4 +1,4 @@
-package com.ezycart.Entity;
+package com.ezycart.ezycart.Entities;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.Column;
@@ -35,8 +35,8 @@ public class Address {
   private String pincode;
 
   @ManyToOne
-  @JoinColumn(name = "userId")
-  @JsonIgnore
+  @JoinColumn(name = "user_id")
+  // @JsonIgnore
   private User user;
 
   private String mobile;

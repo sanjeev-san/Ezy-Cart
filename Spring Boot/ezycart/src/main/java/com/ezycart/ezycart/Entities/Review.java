@@ -1,12 +1,9 @@
-package com.ezycart.Entity;
-
+package com.ezycart.ezycart.Entities;
 import java.time.LocalDateTime;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
-import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
-import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -14,34 +11,36 @@ import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 
 @Entity
-public class Rating {
+public class Review {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy=GenerationType.AUTO)
     private Long id;
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "User_id", nullable = false)
-    private User user;
+    private String review;
 
+    @ManyToOne
+    @JoinColumn(name = "product_id")
     @JsonIgnore
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "product_id", nullable = false)
     private Product product;
 
-    @Column(name = "rating")
-    private double rating;
+    @ManyToOne
+    @JoinColumn(name = "user_id")
+    private User user;
 
     private LocalDateTime createdAt;
+    
 
-    public Rating() {
+    public Review() {
     }
 
-    public Rating(Long id, User user, Product product, double rating, LocalDateTime createdAt) {
+    public Review(Long id, String review, Product product, User user, LocalDateTime createdAt) {
         this.id = id;
-        this.user = user;
+        this.review = review;
         this.product = product;
-        this.rating = rating;
+        this.user = user;
         this.createdAt = createdAt;
     }
+
+
 
     public Long getId() {
         return id;
@@ -51,12 +50,12 @@ public class Rating {
         this.id = id;
     }
 
-    public User getUser() {
-        return user;
+    public String getReview() {
+        return review;
     }
 
-    public void setUser(User user) {
-        this.user = user;
+    public void setReview(String review) {
+        this.review = review;
     }
 
     public Product getProduct() {
@@ -67,12 +66,12 @@ public class Rating {
         this.product = product;
     }
 
-    public double getRating() {
-        return rating;
+    public User getUser() {
+        return user;
     }
 
-    public void setRating(double rating) {
-        this.rating = rating;
+    public void setUser(User user) {
+        this.user = user;
     }
 
     public LocalDateTime getCreatedAt() {
@@ -83,7 +82,5 @@ public class Rating {
         this.createdAt = createdAt;
     }
 
-
-    
     
 }

@@ -1,4 +1,4 @@
-package com.ezycart.Exception;
+package com.ezycart.ezycart.Exception;
 
 public class UserException extends Exception {
     public UserException(){

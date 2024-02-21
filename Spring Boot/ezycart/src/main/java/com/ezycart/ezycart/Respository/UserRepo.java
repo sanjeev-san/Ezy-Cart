@@ -1,7 +1,8 @@
-package com.ezycart.Respository;
+package com.ezycart.ezycart.Respository;
 
-import com.ezycart.Entity.User;
 import org.springframework.data.jpa.repository.JpaRepository;
+
+import com.ezycart.ezycart.Entities.User;
 
 public interface UserRepo extends JpaRepository<User, Long> {
   public User findByEmail(String email);

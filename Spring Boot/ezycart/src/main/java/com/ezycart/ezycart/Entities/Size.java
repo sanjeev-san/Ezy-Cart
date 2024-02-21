@@ -1,4 +1,4 @@
-package com.ezycart.Entity;
+package com.ezycart.ezycart.Entities;
 
 
 public class Size {

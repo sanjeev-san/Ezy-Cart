@@ -1,4 +1,4 @@
-package com.ezycart.Config;
+package com.ezycart.ezycart.Config;
 
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
@@ -29,6 +29,7 @@ public class jwtValidator extends OncePerRequestFilter {
     String jwt = request.getHeader(jwtConstant.JWT_HEADER);
     if (jwt != null) {
       jwt = jwt.substring(7);
+      System.out.println("jwt "+jwt);
       try {
         SecretKey key = Keys.hmacShaKeyFor(jwtConstant.SECRET_KEY.getBytes());
         // Claims claims = Jwts.parserBuilder().setSigningKey(key).build().parseClaimsJws(jwt).getBody();
@@ -47,6 +48,7 @@ public class jwtValidator extends OncePerRequestFilter {
         );
 
         Authentication authentication = new UsernamePasswordAuthenticationToken(
+          email,
           null,
           auths
         );

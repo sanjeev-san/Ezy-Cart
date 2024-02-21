@@ -1,16 +1,21 @@
-package com.ezycart.Controller;
+package com.ezycart.ezycart.Controller;
 
-import com.ezycart.Config.jwtProvider;
-import com.ezycart.Entity.User;
-import com.ezycart.Exception.UserException;
-import com.ezycart.Response.AuthResponse;
-import com.ezycart.Respository.UserRepo;
+import com.ezycart.ezycart.Config.jwtProvider;
+import com.ezycart.ezycart.Entities.User;
+import com.ezycart.ezycart.Exception.UserException;
+import com.ezycart.ezycart.Request.LoginRequest;
+import com.ezycart.ezycart.Response.AuthResponse;
+import com.ezycart.ezycart.Respository.UserRepo;
+import com.ezycart.ezycart.Service.CustomUserServiceImp;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -23,9 +28,12 @@ public class AuthController {
 
   @Autowired
   private UserRepo userRepo;
-
+  @Autowired
   private jwtProvider jwtProvider;
+  @Autowired
   private PasswordEncoder passwordEncoder;
+  @Autowired
+  private CustomUserServiceImp customUserServiceImp;
 
   @PostMapping("/signup")
   public ResponseEntity<AuthResponse> createUserHandler(@RequestBody User user)
@@ -55,8 +63,42 @@ public class AuthController {
     SecurityContextHolder.getContext().getAuthentication();
 
     String token = jwtProvider.generateToken(authentication);
-    AuthResponse authResponse = new AuthResponse(token, "SignUp Successfully");
+    AuthResponse authResponse = new AuthResponse();
+    authResponse.setJwt(token);
+    authResponse.setMessage("Signup Sucessfully");
+    return new ResponseEntity<AuthResponse>(authResponse, HttpStatus.CREATED);
+  }
+
+  @PostMapping("/sigin")
+  public ResponseEntity<AuthResponse> loginUserHandler(
+    @RequestBody LoginRequest loginRequest
+  ) {
+    String userName = loginRequest.getEmail();
+    String password = loginRequest.getPassword();
+
+    Authentication authentication = authenticate( userName, password);
+    SecurityContextHolder.getContext().setAuthentication(authentication);
+
+    String token = jwtProvider.generateToken(authentication);
+    AuthResponse authResponse = new AuthResponse();
+    authResponse.setJwt(token);
+    authResponse.setMessage("Signin Sucessfully");
 
     return new ResponseEntity<AuthResponse>(authResponse, HttpStatus.CREATED);
+
+  }
+
+  private Authentication authenticate(String userName, String password) {
+    UserDetails userDetails = customUserServiceImp.loadUserByUsername(userName);
+    if (userDetails==null) {
+      throw new BadCredentialsException("invalid Username and Password");
+    }
+
+    if (!passwordEncoder.matches(password, userDetails.getPassword())) {
+      throw new BadCredentialsException("Invalid Password");
+    }
+
+
+    return new UsernamePasswordAuthenticationToken(userDetails,null, userDetails.getAuthorities());
   }
 }

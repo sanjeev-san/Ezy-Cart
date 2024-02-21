@@ -1,8 +1,7 @@
-package com.ezycart.Config;
+package com.ezycart.ezycart.Config;
 
 import jakarta.servlet.http.HttpServletRequest;
 import java.util.Arrays;
-
 import java.util.Collections;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -16,7 +15,7 @@ import org.springframework.web.cors.CorsConfiguration;
 import org.springframework.web.cors.CorsConfigurationSource;
 
 @Configuration
-public class appConfig {
+public class AppConfig {
 
   @Bean
   public SecurityFilterChain securityFilterChain(HttpSecurity http)
@@ -50,6 +49,7 @@ public class appConfig {
             cfg.setAllowedMethods(Collections.singletonList("*"));
             cfg.setAllowCredentials(true);
             cfg.setAllowedHeaders(Collections.singletonList("*"));
+            cfg.setExposedHeaders(Arrays.asList("Authorization"));
             cfg.setMaxAge(3600L);
             return cfg;
           }

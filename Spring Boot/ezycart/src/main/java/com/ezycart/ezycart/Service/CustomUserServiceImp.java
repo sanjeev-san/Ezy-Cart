@@ -1,4 +1,4 @@
-package com.ezycart.Service;
+package com.ezycart.ezycart.Service;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -10,8 +10,8 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
-import com.ezycart.Entity.User;
-import com.ezycart.Respository.UserRepo;
+import com.ezycart.ezycart.Entities.User;
+import com.ezycart.ezycart.Respository.UserRepo;
 
 @Service
 public class CustomUserServiceImp  implements UserDetailsService{
