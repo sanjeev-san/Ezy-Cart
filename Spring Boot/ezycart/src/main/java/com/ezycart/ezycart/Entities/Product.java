@@ -42,6 +42,8 @@ public class Product {
   @Column(name = "brand")
   private String brand;
 
+  private String color;
+
   @Embedded
   @ElementCollection
   @Column(name = "Sizes")
@@ -84,6 +86,7 @@ public class Product {
     int discountedPercent,
     int quantity,
     String brand,
+    String color,
     Set<Size> sizes,
     String imageUrl,
     List<Rating> ratings,
@@ -100,6 +103,7 @@ public class Product {
     this.discountedPercent = discountedPercent;
     this.quantity = quantity;
     this.brand = brand;
+    this.color = color;
     this.sizes = sizes;
     this.imageUrl = imageUrl;
     this.ratings = ratings;
@@ -227,5 +231,13 @@ public class Product {
 
   public void setCreatedAt(LocalDateTime createdAt) {
     this.createdAt = createdAt;
+  }
+
+  public String getColor() {
+    return color;
+  }
+
+  public void setColor(String color) {
+    this.color = color;
   }
 }

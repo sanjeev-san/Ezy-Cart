@@ -8,7 +8,8 @@ import org.springframework.data.repository.query.Param;
 public interface CategoryRepo extends JpaRepository<Category, Long> {
   public Category findByName(String name);
 
-  @Query("SELECT c from category c where c.name =:name And c.parentCategory.name=: parentCategoryName")
+  @Query("SELECT c FROM Category c WHERE c.name = :name AND c.parentCategory.name = :parentCategoryName"
+  )
   public Category findByNameAndParent(
     @Param("name") String name,
     @Param("parentCategoryName") String parentCategoryName
