@@ -7,7 +7,6 @@ import com.ezycart.ezycart.Entities.User;
 import com.ezycart.ezycart.Exception.CartItemException;
 import com.ezycart.ezycart.Exception.UserException;
 import com.ezycart.ezycart.Respository.CartItemRepo;
-import com.ezycart.ezycart.Respository.CartRepo;
 import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -20,9 +19,6 @@ public class CartItemServiceImpl implements CartItemService {
 
   @Autowired
   private UserService userService;
-
-  @Autowired
-  private CartRepo cartRepo;
 
   @Override
   public CartItem createCartItem(CartItem cartItem) {
