@@ -1,7 +1,6 @@
 package com.ezycart.ezycart.Entities;
 
 import com.ezycart.ezycart.User.Domain.OrderStatus;
-import com.ezycart.ezycart.User.Domain.PaymentStatus;
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Embedded;

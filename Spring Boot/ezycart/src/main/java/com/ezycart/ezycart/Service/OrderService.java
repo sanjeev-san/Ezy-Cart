@@ -4,7 +4,6 @@ import com.ezycart.ezycart.Entities.Address;
 import com.ezycart.ezycart.Entities.Order;
 import com.ezycart.ezycart.Entities.User;
 import com.ezycart.ezycart.Exception.OrderException;
-
 import java.util.List;
 
 public interface OrderService {

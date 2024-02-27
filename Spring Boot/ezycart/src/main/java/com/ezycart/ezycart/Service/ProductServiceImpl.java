@@ -26,8 +26,6 @@ public class ProductServiceImpl implements ProductService {
   @Autowired
   private CategoryRepo categoryRepo;
 
-
-
   @Override
   public Product createProduct(CreateProductRequest req) {
     Category topLevel = categoryRepo.findByName(req.getTopLevelCategory());
@@ -119,7 +117,7 @@ public class ProductServiceImpl implements ProductService {
   }
 
   @Override
-  public Page<Product> getAllProducts(
+  public Page<Product> getAllProduct(
     String category,
     List<String> colors,
     List<String> sizes,
@@ -176,5 +174,10 @@ public class ProductServiceImpl implements ProductService {
       products.size()
     );
     return filteredProducts;
+  }
+
+  @Override
+  public List<Product> getAllProducts() {
+    return productRepo.findAll();
   }
 }
