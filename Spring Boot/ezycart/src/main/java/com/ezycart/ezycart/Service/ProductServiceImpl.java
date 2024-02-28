@@ -180,4 +180,10 @@ public class ProductServiceImpl implements ProductService {
   public List<Product> getAllProducts() {
     return productRepo.findAll();
   }
+
+  @Override
+  public List<Product> searchProduct(String query) {
+    List<Product> products = productRepo.searchProduct(query);
+    return products;
+  }
 }

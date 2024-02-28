@@ -4,11 +4,14 @@ import com.ezycart.ezycart.Entities.Product;
 import com.ezycart.ezycart.Entities.Rating;
 import com.ezycart.ezycart.Entities.User;
 import com.ezycart.ezycart.Exception.ProductException;
+import com.ezycart.ezycart.Request.RatingRequest;
 import com.ezycart.ezycart.Respository.RatingRepo;
 import java.time.LocalDateTime;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
+@Service
 public class RatingServiceImpl implements RatingService {
 
   @Autowired
@@ -18,8 +21,9 @@ public class RatingServiceImpl implements RatingService {
   private ProductService productService;
 
   @Override
-  public Rating createRating(Rating req, User user) throws ProductException {
-    Product product = productService.findProductById(req.getId());
+  public Rating createRating(RatingRequest req, User user)
+    throws ProductException {
+    Product product = productService.findProductById(req.getProductId());
     Rating rating = new Rating();
     rating.setProduct(product);
     rating.setUser(user);

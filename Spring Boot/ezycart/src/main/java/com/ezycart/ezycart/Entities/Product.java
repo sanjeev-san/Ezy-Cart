@@ -27,7 +27,6 @@ public class Product {
   private String title;
   private String description;
 
-  @Column(name = "price")
   private int price;
 
   @Column(name = "discounted_price")
@@ -36,10 +35,9 @@ public class Product {
   @Column(name = "discounted_percent")
   private int discountedPercent;
 
-  @Column(name = "quantity")
+
   private int quantity;
 
-  @Column(name = "brand")
   private String brand;
 
   private String color;
