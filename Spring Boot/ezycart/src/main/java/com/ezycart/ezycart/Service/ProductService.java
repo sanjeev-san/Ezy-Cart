@@ -7,7 +7,7 @@ import java.util.List;
 import org.springframework.data.domain.Page;
 
 public interface ProductService {
-  public Product createProduct(CreateProductRequest req);
+  public Product createProduct(CreateProductRequest req) throws ProductException;
 
   public String deleteProduct(Long productId) throws ProductException;
 

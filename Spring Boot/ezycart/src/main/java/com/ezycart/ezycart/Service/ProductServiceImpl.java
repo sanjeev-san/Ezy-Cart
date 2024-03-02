@@ -31,11 +31,10 @@ public class ProductServiceImpl implements ProductService {
     Category topLevel = categoryRepo.findByName(req.getTopLevelCategory());
 
     if (topLevel == null) {
-      Category topCategory = new Category();
-      topCategory.setName(req.getTopLevelCategory());
-      topCategory.setLevel(1);
-
-      topLevel = categoryRepo.save(topCategory);
+      Category topLevelCategory = new Category();
+      topLevelCategory.setName(req.getTopLevelCategory());
+      topLevelCategory.setLevel(1);
+      topLevel = categoryRepo.save(topLevelCategory);
     }
 
     Category secondLevel = categoryRepo.findByNameAndParent(
@@ -48,7 +47,7 @@ public class ProductServiceImpl implements ProductService {
       secondLevelCategory.setName(req.getSecondLevelCategory());
       secondLevelCategory.setLevel(2);
       secondLevelCategory.setParentCategory(topLevel);
-      secondLevel = categoryRepo.save(secondLevel);
+      secondLevel = categoryRepo.save(secondLevelCategory);
     }
 
     Category thirdLevel = categoryRepo.findByNameAndParent(
@@ -61,7 +60,7 @@ public class ProductServiceImpl implements ProductService {
       thirdLevelCategory.setName(req.getThirdLevelCategory());
       thirdLevelCategory.setLevel(3);
       thirdLevelCategory.setParentCategory(secondLevel);
-      thirdLevel = categoryRepo.save(thirdLevel);
+      thirdLevel = categoryRepo.save(thirdLevelCategory);
     }
 
     Product product = new Product();

@@ -29,8 +29,10 @@ public class AdminProductController {
   public ResponseEntity<Product> createProductHandler(
     @RequestBody CreateProductRequest req
   ) throws ProductException {
+    System.out.println();
+    System.out.println("Up product service");
     Product createdProduct = productService.createProduct(req);
-
+    System.out.println("below product service");
     return new ResponseEntity<Product>(createdProduct, HttpStatus.ACCEPTED);
   }
 

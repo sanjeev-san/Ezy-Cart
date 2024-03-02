@@ -1,13 +1,14 @@
 package com.ezycart.ezycart.Controller;
 
 import com.ezycart.ezycart.Config.jwtProvider;
+import com.ezycart.ezycart.Entities.Cart;
 import com.ezycart.ezycart.Entities.User;
 import com.ezycart.ezycart.Exception.UserException;
 import com.ezycart.ezycart.Request.LoginRequest;
 import com.ezycart.ezycart.Response.AuthResponse;
 import com.ezycart.ezycart.Respository.UserRepo;
+import com.ezycart.ezycart.Service.CartService;
 import com.ezycart.ezycart.Service.CustomUserServiceImp;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -28,12 +29,18 @@ public class AuthController {
 
   @Autowired
   private UserRepo userRepo;
+
   @Autowired
   private jwtProvider jwtProvider;
+
   @Autowired
   private PasswordEncoder passwordEncoder;
+
   @Autowired
   private CustomUserServiceImp customUserServiceImp;
+
+  @Autowired
+  private CartService cartService;
 
   @PostMapping("/signup")
   public ResponseEntity<AuthResponse> createUserHandler(@RequestBody User user)
@@ -56,6 +63,8 @@ public class AuthController {
     createdUser.setLastName(lastName);
     User savedUser = userRepo.save(createdUser);
 
+    Cart cart = cartService.createCart(savedUser);
+
     Authentication authentication = new UsernamePasswordAuthenticationToken(
       savedUser.getEmail(),
       savedUser.getPassword()
@@ -76,7 +85,7 @@ public class AuthController {
     String userName = loginRequest.getEmail();
     String password = loginRequest.getPassword();
 
-    Authentication authentication = authenticate( userName, password);
+    Authentication authentication = authenticate(userName, password);
     SecurityContextHolder.getContext().setAuthentication(authentication);
 
     String token = jwtProvider.generateToken(authentication);
@@ -85,12 +94,11 @@ public class AuthController {
     authResponse.setMessage("Signin Sucessfully");
 
     return new ResponseEntity<AuthResponse>(authResponse, HttpStatus.CREATED);
-
   }
 
   private Authentication authenticate(String userName, String password) {
     UserDetails userDetails = customUserServiceImp.loadUserByUsername(userName);
-    if (userDetails==null) {
+    if (userDetails == null) {
       throw new BadCredentialsException("invalid Username and Password");
     }
 
@@ -98,7 +106,10 @@ public class AuthController {
       throw new BadCredentialsException("Invalid Password");
     }
 
-
-    return new UsernamePasswordAuthenticationToken(userDetails,null, userDetails.getAuthorities());
+    return new UsernamePasswordAuthenticationToken(
+      userDetails,
+      null,
+      userDetails.getAuthorities()
+    );
   }
 }

@@ -47,7 +47,7 @@ public class UserProductController {
       pageSize
     );
 
-    System.out.println("complete Products");
+    // System.out.println("complete Products");
     return new ResponseEntity<>(res, HttpStatus.ACCEPTED);
   }
 

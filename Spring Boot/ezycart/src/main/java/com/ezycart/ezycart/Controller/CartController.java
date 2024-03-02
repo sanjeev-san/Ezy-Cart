@@ -28,7 +28,7 @@ public class CartController {
   @Autowired
   private UserService userService;
 
-  @GetExchange("/")
+  @GetExchange()
   public ResponseEntity<Cart> findUserCartHandler(
     @RequestHeader("Authorization") String jwt
   ) throws UserException {

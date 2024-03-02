@@ -29,7 +29,7 @@ public class OrderController {
   @Autowired
   private UserService userService;
 
-  @PostMapping("/")
+  @PostMapping()
   public ResponseEntity<Order> createOrderHandler(
     @RequestBody Address shippingAddress,
     @RequestHeader("Authorization") String jwt
