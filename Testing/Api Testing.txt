@@ -1,0 +1,109 @@
+1.Sign Up
+Post
+http://localhost:8080/auth/signup
+
+{
+    "firstName":"Shubham",
+    "lastName":"Rajput",
+    "email":"shubham@gmail.com",
+    "password" :"shubham" 
+}
+
+jwt : eyJhbGciOiJIUzM4NCJ9.eyJpYXQiOjE3MDkxMzM3ODQsImV4cCI6MTcwOTk3OTc4NCwiZW1haWwiOiJzaHViaGFtQGdtYWlsLmNvbSJ9.UWCqJmWm9_ANJIeL6IHce_KST2jNp-fbOxNmylZKzBzqF3AfUv_J_yLmb_gxPa1z
+
+Add it to environment variables
+Global
+
+2.Profile
+Get
+http://localhost:8080/api/users/profile
+
+in Authorization provide bearer token {{JWT}}
+
+3.Signin
+Post
+http://localhost:8080/auth/sigin
+{
+    "email":"shubham2220@gmail.com",
+    "password" :"shubham" 
+}
+
+4. Create product
+Post
+http://localhost:8080/api/admin/products/
+
+{
+    "title": "Mens Printed pure cotton Straight Kurta",
+    "description": "The flamboyance of textured blue makes this new style of kurta pajama an exceptionally dressy outfit for special occasions!",
+    "price": 1499,
+    "discountedPrice": 499,
+    "discountedPrcnt": 66,
+    "quantity": 100,
+    "brand": "Majestic man",
+    "color": "Green",
+    "sizes": [
+        {
+            "name": "S",
+            "quantity": 28
+        },
+        {
+            "name": "M",
+            "quantity": 25
+        },
+        {
+            "name": "L",
+            "quantity": 2
+        }
+    ],
+    "imageUrl": "https://manyavar.scene7.com/is/image/manyavar/I04_0R5A3796%20copy_20-10-2021-20-04:650x900",
+    "topLevelCategory": "Men",
+    "secondLevelCategory": "clothing",
+    "thirdLevelCategory": "mens_kurta"
+}
+
+5. Get all Products
+http://localhost:8080/api/admin/products/all
+
+6.Get all products through Parameter
+
+sort low
+http://localhost:8080/api/products?colors=&sizes=&minPrice=0&maxPrice=10000&minDiscount=0&category=mens_kurta&stock=null&sort=price_low&pageNumber=0&pageSize=10
+
+sort high
+http://localhost:8080/api/products?colors=&sizes=&minPrice=0&maxPrice=1000&minDiscount=0&category=mens_kurtas&stock=null&sort=price_high&pageNumber=0&pageSize=10
+
+7.Get product by id
+http://localhost:8080/api/products/id/5
+
+8.Get cart
+http://localhost:8080/api/cart
+
+9.Add to cart
+Put
+http://localhost:8080/api/cart/add
+
+{
+    "productId":2,
+    "size":"S"
+}
+
+10.Remove item from cart
+delete
+http://localhost:8080/api/cart_items/{cartitemId}
+
+11.Create Orders
+Post
+http://localhost:8080/api/orders
+
+{
+    "firstName":"MS20",
+    "lastName":"2.O",
+    "streetAddress":"Nazirabad road",
+    "city":"Kolkata",
+    "State":"West bengal",
+    "pincode":"123456",
+    "mobile":"8163673233"
+}
+
+12.Get Orders history
+http://localhost:8080/api/orders/user
